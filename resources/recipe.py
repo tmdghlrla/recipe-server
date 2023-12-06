@@ -213,3 +213,57 @@ class RecipeResource(Resource) :
             return {"return" : "fail", "error" : str(e)}, 500
 
         return {"result" : "success"}, 200
+
+class RecipePublishResource(Resource) :
+    def put(self, recipe_id) :        
+        try :
+            connection = get_connection()
+
+            query = '''update recipe
+                        set is_publish=1
+                        where id=%s;'''
+            
+            record = (recipe_id,)
+
+            cursor = connection.cursor()
+
+            cursor.execute(query,record)
+
+            connection.commit()
+
+            cursor.close()
+            connection.close()
+
+        except Error as e :
+            print(e)
+            cursor.close()
+            connection.close()
+
+            return {"result" : "fail", "error" : str(e)}, 500
+
+        return {"result" : "success"}, 200
+    def delete(self, recipe_id) :
+        try :
+            connection = get_connection()
+            
+            query = '''update recipe
+                        set is_publish=0
+                        where id=%s;'''
+            record = (recipe_id,)
+            cursor = connection.cursor()
+
+            cursor.execute(query, record)
+
+            connection.commit()
+
+            cursor.close()
+            connection.close()
+
+        except Error as e :
+            print(e)
+            cursor.close()
+            connection.close()
+
+            return {"result" : "fail", "error" : str(e)}, 500
+
+        return {"result" : "success"}, 200

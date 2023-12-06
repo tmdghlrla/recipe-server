@@ -2,7 +2,8 @@
 
 from flask import Flask
 from flask_restful import Api
-from resources.recipe import RecipeListResource, RecipeResource
+from resources.recipe import RecipeListResource, RecipePublishResource, RecipeResource
+from resources.user import UserRegisterResource
 
 app = Flask(__name__)
 
@@ -14,6 +15,8 @@ api = Api(app)
 # 경로(Path)와 리소스(API코드)를 연결한다.
 api.add_resource(RecipeListResource,'/recipes') # 해당경로에 api가 들어오면 처리함
 api.add_resource(RecipeResource,'/recipes/<int:recipe_id>')
+api.add_resource(RecipePublishResource,'/recipes/<int:recipe_id>/publish')
+api.add_resource(UserRegisterResource,'/user/register')
 
 if __name__=='__main__' :
     app.run()
