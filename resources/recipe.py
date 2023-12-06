@@ -193,7 +193,7 @@ class RecipeResource(Resource) :
 
             query = '''delete from recipe
                         where id = %s;'''
-            print('adfadfds')
+            
             record = (recipe_id,)
 
             cursor = connection.cursor()
