@@ -5,7 +5,7 @@ from config import Config
 # 원문비밀번호를 단반향 암호화 하는 함수
 def hash_password(original_password) :
     original_password = original_password + Config.PASSWORD_SALT
-    password = pbkdf2_sha256.has(original_password)
+    password = pbkdf2_sha256.hash(original_password)
     return password
 
 # 유저가 로그인할 때 입력한 비밀번호가 암호화된 비번과 맞는지 체크하는 함수
