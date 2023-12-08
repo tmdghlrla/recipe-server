@@ -108,7 +108,7 @@ class UserLoginResource(Resource) :
             return {"error" : "비밀번호가 맞지 않습니다."}, 406
         
         # JWT 토큰을 만들어서 클라이언트에게 응답한다.
-        access_token = create_access_token(result_list[0]['id'],expires_delta=datetime.timedelta(minutes= 2))            # 파라미터로 유저아이디를 받음
+        access_token = create_access_token(result_list[0]['id'],expires_delta=datetime.timedelta(minutes= 200))            # 파라미터로 유저아이디를 받음
 
         return {"result" : "success", "access_token" : access_token}, 200
 jwt_blocklist = set()
